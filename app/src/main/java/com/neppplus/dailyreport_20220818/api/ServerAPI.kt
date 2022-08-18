@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ServerAPI {
 
     companion object {
-        private val baseUrl = "https://keepthetime.xyz"
+        private val baseUrl = "http://3.37.32.230/"
 
         private var retrofit : Retrofit? = null
 
