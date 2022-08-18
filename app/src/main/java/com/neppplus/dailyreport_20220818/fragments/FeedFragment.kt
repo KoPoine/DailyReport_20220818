@@ -1,13 +1,18 @@
 package com.neppplus.dailyreport_20220818.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.dailyreport_20220818.R
+import com.neppplus.dailyreport_20220818.adapters.FeedRecyclerViewAdapter
 import com.neppplus.dailyreport_20220818.databinding.FragmentFeedBinding
 import com.neppplus.dailyreport_20220818.datas.BasicResponse
+import com.neppplus.dailyreport_20220818.datas.FeedData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,6 +20,8 @@ import retrofit2.Response
 class FeedFragment: BaseFragment() {
 
     lateinit var binding : FragmentFeedBinding
+    lateinit var mFeedRecyclerAdapter : FeedRecyclerViewAdapter
+    val mFeedList = ArrayList<FeedData>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +45,11 @@ class FeedFragment: BaseFragment() {
     }
 
     override fun setValues() {
+        mFeedRecyclerAdapter = FeedRecyclerViewAdapter(mContext, mFeedList)
+        binding.feedRecyclerView.adapter = mFeedRecyclerAdapter
+        binding.feedRecyclerView.layoutManager = LinearLayoutManager(mContext)
+        binding.feedRecyclerView.addOnScrollListener(scrollListener)
+
         getFeedDataFromServer(0)
     }
 
@@ -45,7 +57,10 @@ class FeedFragment: BaseFragment() {
         apiList.getRequestFeed(pageNum).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
-
+                    val br = response.body()!!
+                    mFeedList.clear()
+                    mFeedList.addAll(br.data.feeds)
+                    mFeedRecyclerAdapter.notifyDataSetChanged()
                 }
             }
 
@@ -53,5 +68,28 @@ class FeedFragment: BaseFragment() {
 
             }
         })
+    }
+
+    val scrollListener = object : RecyclerView.OnScrollListener(){
+//        지금 리싸이클러뷰가 움직일때 어느 위치에 있는가? 판단
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (binding.feedRecyclerView.canScrollVertically(-1) &&
+                newState == RecyclerView.SCROLL_STATE_SETTLING
+            ) {
+//                리싸이클러뷰 최상단
+                Log.d("현재 상태", "최상단")
+            }
+            else if (binding.feedRecyclerView.canScrollVertically(1) &&
+                newState == RecyclerView.SCROLL_STATE_SETTLING) {
+//                리싸이클러뷰 최하단
+                binding.fab.visibility = View.GONE
+                Log.d("현재 상태", "최하단")
+            }
+            else {
+//                리싸이클러 뷰 작동 중
+                binding.fab.visibility = View.VISIBLE
+            }
+        }
     }
 }

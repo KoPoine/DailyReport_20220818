@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
     android:background="@drawable/custom_rectangle_r8"
     android:backgroundTint="@color/blue_gray_800"
     android:padding="16dp">
@@ -50,9 +51,11 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/conTimeTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         android:text="시간 자리"
         android:textColor="@color/white"
         android:textSize="18sp"
