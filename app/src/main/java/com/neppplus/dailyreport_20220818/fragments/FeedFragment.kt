@@ -28,7 +28,9 @@ class FeedFragment: BaseFragment() {
     }
 
     override fun setupEvents() {
+        binding.fab.setOnClickListener{
 
+        }
     }
 
     override fun setValues() {
