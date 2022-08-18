@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.databinding.FragmentFeedBinding
+import com.neppplus.dailyreport_20220818.datas.BasicResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FeedFragment: BaseFragment() {
 
@@ -34,7 +38,20 @@ class FeedFragment: BaseFragment() {
     }
 
     override fun setValues() {
-
+        getFeedDataFromServer(0)
     }
 
+    fun getFeedDataFromServer(pageNum: Int) {
+        apiList.getRequestFeed(pageNum).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if (response.isSuccessful) {
+
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+        })
+    }
 }

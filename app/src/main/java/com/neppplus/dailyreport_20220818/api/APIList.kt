@@ -2,14 +2,13 @@ package com.neppplus.dailyreport_20220818.api
 
 import com.neppplus.dailyreport_20220818.datas.BasicResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface APIList {
     @GET("/feed")
-    fun getRequestFeed(): Call<BasicResponse>
+    fun getRequestFeed(
+        @Query("page_num") pageNum : Int
+    ): Call<BasicResponse>
 
     @FormUrlEncoded
     @POST("/user")
