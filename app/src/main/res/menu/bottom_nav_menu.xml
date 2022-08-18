@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="feed"
+        android:title="피드"
+        android:icon="@drawable/ic_baseline_view_stream_24"/>
+    <item android:id="statics"
+        android:title="통계"
+        android:icon="@drawable/ic_baseline_timeline_24"/>
+    <item android:id="home"
+        android:title="홈"
+        android:icon="@drawable/ic_baseline_home_24"/>
+    <item android:id="table"
+        android:title="타임테이블"
+        android:icon="@drawable/ic_baseline_table_chart_24"/>
+    <item android:id="setting"
+        android:title="설정"
+        android:icon="@drawable/ic_baseline_settings_24"/>
+</menu>
