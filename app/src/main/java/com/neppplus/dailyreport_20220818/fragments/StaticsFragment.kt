@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.neppplus.dailyreport_20220818.R
-import com.neppplus.dailyreport_20220818.databinding.FragmentSettingBinding
+import com.neppplus.dailyreport_20220818.databinding.FragmentStaticsBinding
 
 class StaticsFragment: BaseFragment() {
 
-    lateinit var binding : FragmentSettingBinding
+    lateinit var binding : FragmentStaticsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
