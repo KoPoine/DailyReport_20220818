@@ -74,21 +74,21 @@ class FeedFragment: BaseFragment() {
 //        지금 리싸이클러뷰가 움직일때 어느 위치에 있는가? 판단
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if (binding.feedRecyclerView.canScrollVertically(-1) &&
+            if (recyclerView.canScrollVertically(1) &&
                 newState == RecyclerView.SCROLL_STATE_SETTLING
             ) {
 //                리싸이클러뷰 최상단
+//                첫 페이지(pageNum = 0) 피드로 갱신하기
                 Log.d("현재 상태", "최상단")
             }
-            else if (binding.feedRecyclerView.canScrollVertically(1) &&
+            else if (recyclerView.canScrollVertically(-1) &&
                 newState == RecyclerView.SCROLL_STATE_SETTLING) {
 //                리싸이클러뷰 최하단
-                binding.fab.visibility = View.GONE
+//                다음페이지의 피드 받아오기(page + 1)
                 Log.d("현재 상태", "최하단")
             }
             else {
 //                리싸이클러 뷰 작동 중
-                binding.fab.visibility = View.VISIBLE
             }
         }
     }
