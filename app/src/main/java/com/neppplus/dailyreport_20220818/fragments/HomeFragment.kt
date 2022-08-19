@@ -5,12 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.neppplus.dailyreport_20220818.R
+import com.neppplus.dailyreport_20220818.adapters.GroupRecyclerAdapter
 import com.neppplus.dailyreport_20220818.databinding.FragmentHomeBinding
+import com.neppplus.dailyreport_20220818.datas.GroupData
+import com.neppplus.dailyreport_20220818.utils.GlobalData
 
 class HomeFragment: BaseFragment() {
 
     lateinit var binding : FragmentHomeBinding
+
+    lateinit var mGroupAdapter : GroupRecyclerAdapter
+    val mGroupList = ArrayList<GroupData>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +39,10 @@ class HomeFragment: BaseFragment() {
     }
 
     override fun setValues() {
-
+        mGroupList.addAll(GlobalData.loginUser!!.groups)
+        mGroupAdapter = GroupRecyclerAdapter(mContext, mGroupList)
+        binding.todoRecyclerView.adapter = mGroupAdapter
+        binding.todoRecyclerView.layoutManager = LinearLayoutManager(mContext)
     }
 
 }

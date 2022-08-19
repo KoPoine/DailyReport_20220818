@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/custom_rectangle_r8"
     android:backgroundTint="@color/blue_gray_800"
+    android:layout_marginTop="12dp"
     android:padding="16dp">
 
     <ImageView

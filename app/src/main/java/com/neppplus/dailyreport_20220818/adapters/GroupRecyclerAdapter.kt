@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.datas.GroupData
+import com.neppplus.dailyreport_20220818.utils.SizeUtil
 
 class GroupRecyclerAdapter(
     val mContext : Context, val mList : List<GroupData>
@@ -24,17 +25,24 @@ class GroupRecyclerAdapter(
 
             titleTxt.text = item.name
 
-            val customView = LayoutInflater.from(mContext).inflate(R.layout.goal_list_item, null)
-
-            val goalColorImg = customView.findViewById<ImageView>(R.id.goalColorImg)
-            val goalTitleTxt = customView.findViewById<TextView>(R.id.goalTitleTxt)
+            goalLayout.removeAllViews()
 
             for (goal in item.goals) {
+                val customView = LayoutInflater.from(mContext).inflate(R.layout.goal_list_item, null)
+
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                params.setMargins(0, SizeUtil.dpToPx(mContext, 12f).toInt(), 0, 0)
+
+                customView.layoutParams = params
+
+                goalLayout.addView(customView)
+
+                val goalColorImg = customView.findViewById<ImageView>(R.id.goalColorImg)
+                val goalTitleTxt = customView.findViewById<TextView>(R.id.goalTitleTxt)
 
                 goalTitleTxt.text = goal.title
                 goalColorImg.background.setTint(Color.parseColor(goal.color))  // Color.getColor
-
-                goalLayout.addView(customView)
             }
 
 
