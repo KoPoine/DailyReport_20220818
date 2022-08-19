@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.neppplus.dailyreport_20220818.MainActivity
 import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.datas.GroupData
 import com.neppplus.dailyreport_20220818.utils.GlobalData
@@ -27,7 +29,7 @@ class GroupRecyclerAdapter(
             val btn = itemView.findViewById<Button>(R.id.btn)
 
             btn.setOnClickListener {
-                Toast.makeText(mContext, "클릭됨", Toast.LENGTH_SHORT).show()
+                (mContext as MainActivity).binding.mainViewPager.currentItem = 1
             }
         }
     }
@@ -60,28 +62,35 @@ class GroupRecyclerAdapter(
         fun bind (item : GroupData) {
             val titleTxt = itemView.findViewById<TextView>(R.id.titleTxt)
             val goalLayout = itemView.findViewById<LinearLayout>(R.id.goalLayout)
+            val goalRecyclerview = itemView.findViewById<RecyclerView>(R.id.goalRecyclerView)
 
             titleTxt.text = item.name
 
-            goalLayout.removeAllViews()
+            val goalList = item.goals
+            val goalRecyclerViewAdapter = GoalRecyclerAdapter(mContext, goalList)
+            goalRecyclerview.adapter = goalRecyclerViewAdapter
+            goalRecyclerview.layoutManager = LinearLayoutManager(mContext,
+                LinearLayoutManager.HORIZONTAL, false)
 
-            for (goal in item.goals) {
-                val customView = LayoutInflater.from(mContext).inflate(R.layout.goal_list_item, null)
+//            goalLayout.removeAllViews()
 
-                val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                params.setMargins(0, SizeUtil.dpToPx(mContext, 12f).toInt(), 0, 0)
-
-                customView.layoutParams = params
-
-                goalLayout.addView(customView)
-
-                val goalColorImg = customView.findViewById<ImageView>(R.id.goalColorImg)
-                val goalTitleTxt = customView.findViewById<TextView>(R.id.goalTitleTxt)
-
-                goalTitleTxt.text = goal.title
-                goalColorImg.background.setTint(Color.parseColor(goal.color))  // Color.getColor
-            }
+//            for (goal in item.goals) {
+//                val customView = LayoutInflater.from(mContext).inflate(R.layout.goal_list_item, null)
+//
+//                val params = LinearLayout.LayoutParams(
+//                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+//                params.setMargins(0, SizeUtil.dpToPx(mContext, 12f).toInt(), 0, 0)
+//
+//                customView.layoutParams = params
+//
+//                goalLayout.addView(customView)
+//
+//                val goalColorImg = customView.findViewById<ImageView>(R.id.goalColorImg)
+//                val goalTitleTxt = customView.findViewById<TextView>(R.id.goalTitleTxt)
+//
+//                goalTitleTxt.text = goal.title
+//                goalColorImg.background.setTint(Color.parseColor(goal.color))  // Color.getColor
+//            }
 
 
 
