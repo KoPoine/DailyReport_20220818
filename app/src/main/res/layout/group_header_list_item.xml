@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_gray_800"
+    android:padding="24dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/custom_rectangle_r8"
+        android:backgroundTint="@color/amber_400"/>
+
+    <TextView
+        android:id="@+id/nickTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="사용자 닉네임"
+        android:textSize="32sp"
+        android:textColor="@color/gray_900"/>
+
+</FrameLayout>

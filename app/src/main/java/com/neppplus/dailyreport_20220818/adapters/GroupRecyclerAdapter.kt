@@ -5,18 +5,40 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.datas.GroupData
+import com.neppplus.dailyreport_20220818.utils.GlobalData
 import com.neppplus.dailyreport_20220818.utils.SizeUtil
+import retrofit2.http.Header
 
 class GroupRecyclerAdapter(
     val mContext : Context, val mList : List<GroupData>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    val TYPE_HEADER = 0
+    val TYPE_ITEM = 1
+    val TYPE_FOOTER = 2
+
+    inner class FooterViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+        fun bind () {
+            val btn = itemView.findViewById<Button>(R.id.btn)
+
+            btn.setOnClickListener {
+                Toast.makeText(mContext, "클릭됨", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    inner class HeaderViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+        fun bind () {
+            val nickTxt = itemView.findViewById<TextView>(R.id.nickTxt)
+
+            nickTxt.text = GlobalData.loginUser!!.nickname
+        }
+    }
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind (item : GroupData) {
@@ -51,16 +73,41 @@ class GroupRecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val row = LayoutInflater.from(mContext).inflate(R.layout.group_list_item, parent, false)
-        return MyViewHolder(row)
+        return when(viewType) {
+            TYPE_HEADER -> {
+                val row = LayoutInflater.from(mContext).inflate(R.layout.group_header_list_item, parent, false)
+                HeaderViewHolder(row)
+            }
+            TYPE_FOOTER -> {
+                val row = LayoutInflater.from(mContext).inflate(R.layout.group_footer_list_item, parent, false)
+                FooterViewHolder(row)
+            }
+            else -> {
+                val row = LayoutInflater.from(mContext).inflate(R.layout.group_list_item, parent, false)
+                MyViewHolder(row)
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MyViewHolder).bind(mList[position])
+
+        when (holder) {
+            is HeaderViewHolder -> holder.bind()
+            is MyViewHolder -> holder.bind(mList[position - 1])
+            is FooterViewHolder -> holder.bind()
+        }
     }
 
     override fun getItemCount(): Int {
-        return mList.size
+        return mList.size + 2
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> TYPE_HEADER
+            mList.size + 1 -> TYPE_FOOTER
+            else -> TYPE_ITEM
+        }
     }
 
 }
