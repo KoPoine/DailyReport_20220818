@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.neppplus.dailyreport_20220818.adapters.MainPagerAdapter
 import com.neppplus.dailyreport_20220818.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.combine
 
 class MainActivity : BaseActivity() {
 
@@ -20,13 +21,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-
-    }
-
-    override fun setValues() {
-        mPagerAdapter = MainPagerAdapter(this)
-        binding.mainViewPager.adapter = mPagerAdapter
-
         binding.mainViewPager.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback(){
                 override fun onPageSelected(position: Int) {
@@ -52,5 +46,13 @@ class MainActivity : BaseActivity() {
             }
             return@setOnItemSelectedListener true
         }
+    }
+
+    override fun setValues() {
+        mPagerAdapter = MainPagerAdapter(this)
+        binding.mainViewPager.adapter = mPagerAdapter
+
+        binding.mainViewPager.currentItem = 2
+        binding.bottomNav.selectedItemId = R.id.home
     }
 }
