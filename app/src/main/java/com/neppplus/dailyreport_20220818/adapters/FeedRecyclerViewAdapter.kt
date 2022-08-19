@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.datas.FeedData
 import java.text.SimpleDateFormat
+import java.util.*
 
 class FeedRecyclerViewAdapter(
     val mContext : Context, val mList : List<FeedData>
@@ -28,8 +29,11 @@ class FeedRecyclerViewAdapter(
 
             Glide.with(mContext).load(item.user.profileImg).into(profileImg)
             nickTxt.text = item.user.nickname
-            val sdf = SimpleDateFormat("yy.MM.dd a h:ss")
-            dateTxt.text = sdf.format(item.createdAt)
+//            val sdf = SimpleDateFormat("yy.MM.dd a h:ss")
+//            dateTxt.text = sdf.format(item.createdAt)
+
+            dateTxt.text = item.getTimeTxt()
+
             if (item.openConTime) {
                 conTimeTxt.visibility = View.VISIBLE
                 conTimeTxt.text = "${item.totalConSecond}초"
