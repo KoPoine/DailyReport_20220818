@@ -5,45 +5,45 @@
     android:background="@color/blue_gray_800"
     android:padding="24dp">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/custom_rectangle_r8"
-        android:backgroundTint="@color/amber_400"/>
+        android:orientation="vertical"
+        android:backgroundTint="@color/amber_400">
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioBtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="집중한 시간"
-            android:textColor="@drawable/custom_todo_radio_text"
-            android:button="@null"/>
-
-        <RadioButton
-            android:id="@+id/radioBtn2"
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="남은 시간"
-            android:textColor="@drawable/custom_todo_radio_text"
-            android:button="@null"/>
+            android:orientation="horizontal">
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radioBtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="집중한 시간"
+                android:textColor="@drawable/custom_todo_radio_text"
+                android:button="@null"/>
 
-    <TextView
-        android:id="@+id/nickTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="사용자 닉네임"
-        android:textSize="32sp"
-        android:textColor="@color/gray_900"/>
+            <RadioButton
+                android:id="@+id/radioBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="남은 시간"
+                android:textColor="@drawable/custom_todo_radio_text"
+                android:button="@null"/>
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/conFragLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+    </LinearLayout>
 
 </FrameLayout>

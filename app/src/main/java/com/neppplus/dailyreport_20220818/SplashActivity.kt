@@ -37,6 +37,8 @@ class SplashActivity : BaseActivity() {
                     ContextUtil.setLoginToken(mContext, br.data.token)
                     GlobalData.loginUser = br.data.user
 
+//                    Log.d("닉네임", GlobalData.loginUser!!.nickname)
+
                     val myIntent = Intent(mContext, MainActivity::class.java)
                     startActivity(myIntent)
                     finish()

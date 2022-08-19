@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.dailyreport_20220818.MainActivity
 import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.datas.GroupData
+import com.neppplus.dailyreport_20220818.fragments.FirstFragment
+import com.neppplus.dailyreport_20220818.fragments.HomeFragment
+import com.neppplus.dailyreport_20220818.fragments.SecondFragment
 import com.neppplus.dailyreport_20220818.utils.GlobalData
 import com.neppplus.dailyreport_20220818.utils.SizeUtil
 import retrofit2.http.Header
@@ -23,6 +26,10 @@ class GroupRecyclerAdapter(
     val TYPE_HEADER = 0
     val TYPE_ITEM = 1
     val TYPE_FOOTER = 2
+
+    val homeFragment = (mContext as MainActivity)
+        .supportFragmentManager
+        .findFragmentByTag("f2") as HomeFragment
 
     inner class FooterViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         fun bind () {
@@ -36,22 +43,28 @@ class GroupRecyclerAdapter(
 
     inner class HeaderViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         fun bind () {
-            val nickTxt = itemView.findViewById<TextView>(R.id.nickTxt)
+//            val nickTxt = itemView.findViewById<TextView>(R.id.nickTxt)
             val radioBtn = itemView.findViewById<RadioButton>(R.id.radioBtn1)
             val radioGroup = itemView.findViewById<RadioGroup>(R.id.radioGroup)
 
-            nickTxt.text = GlobalData.loginUser!!.nickname
+//            nickTxt.text = GlobalData.loginUser!!.nickname
 
             radioBtn.isChecked = true
+
+
+            homeFragment.childFragmentManager.beginTransaction()
+                .add(R.id.conFragLayout, FirstFragment()).commit()
 
             radioGroup.setOnCheckedChangeListener { radioGroup, i ->
                 when (i) {
                     R.id.radioBtn1 -> {
 //                        radioButton 클릭 이벤트 처리 진행
-                        Toast.makeText(mContext, "1번 클릭", Toast.LENGTH_SHORT).show()
+                        homeFragment.childFragmentManager.beginTransaction()
+                            .replace(R.id.conFragLayout, FirstFragment()).commit()
                     }
                     R.id.radioBtn2 -> {
-                        Toast.makeText(mContext, "2번 클릭", Toast.LENGTH_SHORT).show()
+                        homeFragment.childFragmentManager.beginTransaction()
+                            .replace(R.id.conFragLayout, SecondFragment()).commit()
                     }
                 }
             }
