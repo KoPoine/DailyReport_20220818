@@ -11,6 +11,32 @@
         android:background="@drawable/custom_rectangle_r8"
         android:backgroundTint="@color/amber_400"/>
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioBtn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="집중한 시간"
+            android:textColor="@drawable/custom_todo_radio_text"
+            android:button="@null"/>
+
+        <RadioButton
+            android:id="@+id/radioBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="남은 시간"
+            android:textColor="@drawable/custom_todo_radio_text"
+            android:button="@null"/>
+
+    </RadioGroup>
+
     <TextView
         android:id="@+id/nickTxt"
         android:layout_width="wrap_content"
