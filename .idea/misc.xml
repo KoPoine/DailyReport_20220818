@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/drawable/custom_bottom_nav_button.xml" value="0.171" />
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/drawable/custom_fab_bg.xml" value="0.171" />
+        <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/drawable/custom_oval.xml" value="0.1935" />
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/drawable/custom_rectangle_r8.xml" value="0.1935" />
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/layout/feed_list_item.xml" value="0.3333333333333333" />
@@ -13,6 +14,8 @@
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/layout/fragment_setting.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/layout/fragment_statics.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/layout/fragment_time_table.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/layout/goal_list_item.xml" value="0.33" />
+        <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/layout/group_list_item.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/NePPPlus_Teacher_01/AndroidStudioProjects/DailyReport_20220818/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33229166666666665" />
       </map>
     </option>

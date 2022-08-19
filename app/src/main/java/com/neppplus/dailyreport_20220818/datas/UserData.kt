@@ -8,5 +8,6 @@ data class UserData(
     val nickname : String,
     val email : String,
     @SerializedName("profile_img")
-    val profileImg : String
+    val profileImg : String,
+    val groups : List<GroupData>
 )
