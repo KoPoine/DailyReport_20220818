@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "730374087875",
+    "project_id": "dailyreport-20220818",
+    "storage_bucket": "dailyreport-20220818.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730374087875:android:a79c79e53b39c165c66e76",
+        "android_client_info": {
+          "package_name": "com.neppplus.dailyreport_20220818"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730374087875-sc6f10nbl2m5ohltvakb3n62aurfheqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD95bmdfGFlRmLmpBigRLyQCgTuccixTfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730374087875-sc6f10nbl2m5ohltvakb3n62aurfheqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

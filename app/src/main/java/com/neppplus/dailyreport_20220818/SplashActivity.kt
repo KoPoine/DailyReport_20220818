@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.google.firebase.messaging.FirebaseMessaging
 import com.neppplus.dailyreport_20220818.datas.BasicResponse
 import com.neppplus.dailyreport_20220818.utils.ContextUtil
 import com.neppplus.dailyreport_20220818.utils.GlobalData
@@ -25,6 +26,11 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            Log.d("DeviceToken", it.result)
+        }
+
+
         val email = "test@test.com"
         val password = "Test!123"
 
