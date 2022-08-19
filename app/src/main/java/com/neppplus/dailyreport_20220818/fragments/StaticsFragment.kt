@@ -1,16 +1,28 @@
 package com.neppplus.dailyreport_20220818.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.neppplus.dailyreport_20220818.R
+import com.neppplus.dailyreport_20220818.adapters.ChattingRecyclerAdapter
 import com.neppplus.dailyreport_20220818.databinding.FragmentStaticsBinding
+import com.neppplus.dailyreport_20220818.datas.ChattingData
 
 class StaticsFragment: BaseFragment() {
 
     lateinit var binding : FragmentStaticsBinding
+    val database = FirebaseDatabase.getInstance("https://dailyreport-20220818-default-rtdb.asia-southeast1.firebasedatabase.app/")
+
+    lateinit var mAdapter : ChattingRecyclerAdapter
+    val mList = ArrayList<ChattingData>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,11 +40,39 @@ class StaticsFragment: BaseFragment() {
     }
 
     override fun setupEvents() {
+        binding.sendBtn.setOnClickListener {
+//            서버에 데이터 기록
+            val inputContent = binding.contentEdt.text.toString()
 
+            database.getReference("message").child("content").setValue(inputContent)
+
+            binding.contentEdt.setText("")
+        }
+
+//        항목의 데이터 변경 감지
+        database.getReference("message")
+            .addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("message 항목 값", snapshot.value.toString())
+
+                    mList.add(0,
+                        ChattingData(
+                            snapshot.child("content").value.toString()
+                        )
+                    )
+                    mAdapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
     }
 
     override fun setValues() {
-
+        mAdapter = ChattingRecyclerAdapter(mContext, mList)
+        binding.chattingRecyclerView.adapter = mAdapter
+        binding.chattingRecyclerView.layoutManager = LinearLayoutManager(mContext)
     }
 
 }
