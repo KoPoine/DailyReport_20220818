@@ -9,6 +9,7 @@ class ContextUtil {
         private val prefName = "KeepTheTimePref"
         private val LOGIN_TOKEN = "LOGIN_TOKEN"
         private val AUTO_LOGIN = "AUTO_LOGIN"
+        private val DEVICE_TOKEN = "DEVICE_TOKEN"
 
         fun setLoginToken(context : Context, token : String) {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
@@ -28,6 +29,16 @@ class ContextUtil {
         fun getAutoLogin(context: Context) : Boolean {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             return pref.getBoolean(AUTO_LOGIN, false)
+        }
+
+        fun setDeviceToken(context : Context, token : String) {
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            pref.edit().putString(DEVICE_TOKEN, token).apply()
+        }
+
+        fun getDeviceToken(context: Context) : String {
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            return pref.getString(DEVICE_TOKEN, "")!!
         }
 
     }

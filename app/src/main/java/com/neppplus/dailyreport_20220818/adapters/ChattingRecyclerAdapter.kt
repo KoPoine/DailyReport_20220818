@@ -3,9 +3,12 @@ package com.neppplus.dailyreport_20220818.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.databinding.ChattingListItemBinding
 import com.neppplus.dailyreport_20220818.datas.ChattingData
+import com.neppplus.dailyreport_20220818.utils.ContextUtil
 
 class ChattingRecyclerAdapter(
     val mContext : Context, val mList : List<ChattingData>
@@ -16,6 +19,9 @@ class ChattingRecyclerAdapter(
         fun bind(item : ChattingData) {
             binding.contentTxt.text = item.content
             binding.dateTxt.text = item.date
+            if (item.deviceToken == ContextUtil.getDeviceToken(mContext)) {
+                binding.contentTxt.setTextColor(ContextCompat.getColorStateList(mContext, R.color.amber_300))
+            }
         }
     }
 

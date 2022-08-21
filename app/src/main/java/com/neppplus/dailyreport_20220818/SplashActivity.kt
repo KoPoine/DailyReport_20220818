@@ -28,6 +28,7 @@ class SplashActivity : BaseActivity() {
     override fun setValues() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             Log.d("DeviceToken", it.result)
+            ContextUtil.setDeviceToken(mContext, it.result)
         }
 
 

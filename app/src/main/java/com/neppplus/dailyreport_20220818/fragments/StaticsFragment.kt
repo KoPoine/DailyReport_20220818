@@ -15,9 +15,11 @@ import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.adapters.ChattingRecyclerAdapter
 import com.neppplus.dailyreport_20220818.databinding.FragmentStaticsBinding
 import com.neppplus.dailyreport_20220818.datas.ChattingData
+import com.neppplus.dailyreport_20220818.utils.ContextUtil
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class StaticsFragment: BaseFragment() {
 
@@ -48,12 +50,24 @@ class StaticsFragment: BaseFragment() {
             val inputContent = binding.contentEdt.text.toString()
             val now = Calendar.getInstance()
 
-            val sdf = SimpleDateFormat("a h:ss")
+            val sdf = SimpleDateFormat("a h:mm")
+            val nowStr = sdf.format(now.time)
+            val deviceToken = ContextUtil.getDeviceToken(mContext)
+
+
+            Log.d("현재 시간", nowStr)
 
 //            맵 구조 활용 한번에 서버에 전송
+            val inputMap = HashMap<String, String>()
 
-            database.getReference("message").child("content").setValue(inputContent)
-            database.getReference("message").child("date").setValue(sdf.format(now.time))
+            inputMap["content"] = inputContent
+            inputMap["date"] = nowStr
+            inputMap["deviceToken"] = deviceToken
+
+            database.getReference("message").setValue(inputMap)
+
+//            database.getReference("message").child("content").setValue(inputContent)
+//            database.getReference("message").child("date").setValue(sdf.format(now.time))
 
             binding.contentEdt.setText("")
         }
@@ -67,7 +81,8 @@ class StaticsFragment: BaseFragment() {
                     mList.add(0,
                         ChattingData(
                             snapshot.child("content").value.toString(),
-                            snapshot.child("date").value.toString()
+                            snapshot.child("date").value.toString(),
+                            snapshot.child("deviceToken").value.toString()
                         )
                     )
                     mAdapter.notifyDataSetChanged()
