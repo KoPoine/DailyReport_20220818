@@ -52,7 +52,7 @@ class MainActivity : BaseActivity() {
         mPagerAdapter = MainPagerAdapter(this)
         binding.mainViewPager.adapter = mPagerAdapter
 
-        binding.mainViewPager.currentItem = 2
-        binding.bottomNav.selectedItemId = R.id.home
+        binding.mainViewPager.currentItem = 1
+        binding.bottomNav.selectedItemId = R.id.statics
     }
 }
