@@ -40,5 +40,11 @@
             android:background="@drawable/custom_checkbox"
             android:button="@null"/>
 
+        <Button
+            android:id="@+id/signUpBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원가입"/>
+
     </LinearLayout>
 </layout>
