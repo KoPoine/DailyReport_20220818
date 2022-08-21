@@ -15,6 +15,7 @@ class ChattingRecyclerAdapter(
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : ChattingData) {
             binding.contentTxt.text = item.content
+            binding.dateTxt.text = item.date
         }
     }
 

@@ -15,6 +15,9 @@ import com.neppplus.dailyreport_20220818.R
 import com.neppplus.dailyreport_20220818.adapters.ChattingRecyclerAdapter
 import com.neppplus.dailyreport_20220818.databinding.FragmentStaticsBinding
 import com.neppplus.dailyreport_20220818.datas.ChattingData
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class StaticsFragment: BaseFragment() {
 
@@ -43,8 +46,14 @@ class StaticsFragment: BaseFragment() {
         binding.sendBtn.setOnClickListener {
 //            서버에 데이터 기록
             val inputContent = binding.contentEdt.text.toString()
+            val now = Calendar.getInstance()
+
+            val sdf = SimpleDateFormat("a h:ss")
+
+//            맵 구조 활용 한번에 서버에 전송
 
             database.getReference("message").child("content").setValue(inputContent)
+            database.getReference("message").child("date").setValue(sdf.format(now.time))
 
             binding.contentEdt.setText("")
         }
@@ -57,7 +66,8 @@ class StaticsFragment: BaseFragment() {
 
                     mList.add(0,
                         ChattingData(
-                            snapshot.child("content").value.toString()
+                            snapshot.child("content").value.toString(),
+                            snapshot.child("date").value.toString()
                         )
                     )
                     mAdapter.notifyDataSetChanged()
