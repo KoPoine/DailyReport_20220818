@@ -24,6 +24,7 @@
             android:text="아이디"/>
 
         <EditText
+            android:id="@+id/emailEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="아이디 입력"/>
@@ -35,6 +36,7 @@
             android:text="비밀번호"/>
 
         <EditText
+            android:id="@+id/pwEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호 입력"/>
@@ -57,6 +59,7 @@
             android:text="닉네임"/>
 
         <EditText
+            android:id="@+id/nickEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="닉네임 입력"/>
